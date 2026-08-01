@@ -25,23 +25,8 @@ void get_response(int &client_sock){
 }
 
 
-void send_msg_size(int clientSock, int msg_size){
-    
-    //std::cout << sizeof(msg_size) << std::endl;
-    send(clientSock, &msg_size, sizeof(msg_size), 0);
-
-    /*
-    char* result;
-    recv(clientSock, result, 2, 0);
-
-    std::cout << result << std::endl;
-    */
-}
-
-
 void socket_communicate(int clientSock, const char *message){
     //handles communication with server
-    //send_msg_size(clientSock, strlen(message));
 
     send(clientSock, message, strlen(message), 0);
     get_response(clientSock);
@@ -65,6 +50,7 @@ int client(){
 
     return 0;
 }
+
 
 int main(int argc, char* argv[]){
 

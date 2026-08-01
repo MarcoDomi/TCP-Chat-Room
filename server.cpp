@@ -15,18 +15,10 @@ sockaddr_in init_sockaddr() {
     return serveraddress;
 }
 
-int get_buffer_size(int clientSocket) {
-    
-    int msg_size;
-    recv(clientSocket, &msg_size, sizeof(msg_size), 0);
-    //send(clientSocket, "ok", strlen("ok"), 0);
-    return msg_size;
-}
-
 void client_communication(int clientSocket){
     //used to send and recieve data from client
 
-    char buffer[1024] = {0};
+    char buffer[1024] = {0}; //buffer is init to all zeroes
     recv(clientSocket, buffer, sizeof(buffer), 0);
     std::cout << "Message from client: " << buffer << std::endl;
     send(clientSocket, buffer, sizeof(buffer), 0);
@@ -34,6 +26,7 @@ void client_communication(int clientSocket){
 
 void server(){
     //primary function for server functionality
+    
     int serverSocket = socket(AF_INET, SOCK_STREAM, 0);
     sockaddr_in serverAddress = init_sockaddr();
 
